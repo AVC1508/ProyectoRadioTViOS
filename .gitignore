@@ -1,1 +1,5 @@
 Secrets.swift
+
+# Configuración personal de Xcode
+**/xcdebugger/
+**/xcuserdata/

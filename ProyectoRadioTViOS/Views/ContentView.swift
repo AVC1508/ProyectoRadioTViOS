@@ -5,9 +5,11 @@ struct ContentView: View {
     @State private var loginViewModel = LoginViewModel()
 
     var body: some View {
+
         @Bindable var login = loginViewModel
 
         ZStack {
+
             LinearGradient(
                 colors: [
                     Color(red: 0.04, green: 0.08, blue: 0.17),
@@ -20,27 +22,29 @@ struct ContentView: View {
 
             if loginViewModel.isLoggedIn {
 
-                VStack(spacing: 25) {
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 65))
-                        .foregroundStyle(.green)
+                VStack(spacing: 0) {
 
-                    Text("¡Bienvenido!")
-                        .font(.largeTitle.bold())
-                        .foregroundStyle(.white)
+                    MainMenuView()
 
-                    Text("Has iniciado sesión correctamente.")
-                        .foregroundStyle(.white.opacity(0.8))
-
-                    Button("Cerrar sesión") {
+                    Button {
                         loginViewModel.logout()
+                    } label: {
+                        Text("CERRAR SESIÓN")
+                            .fontWeight(.bold)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.red.opacity(0.85))
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
-                    .buttonStyle(.borderedProminent)
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 12)
                 }
 
             } else {
 
                 VStack(spacing: 25) {
+
                     Spacer()
 
                     Image(systemName: "dot.radiowaves.left.and.right")

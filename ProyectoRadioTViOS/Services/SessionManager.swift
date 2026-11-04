@@ -41,7 +41,13 @@ class SessionManager {
             &result
         )
 
-        return status == errSecSuccess
+        if status == errSecSuccess,
+           let data = result as? Data,
+           let session = String(data: data, encoding: .utf8) {
+            return session == "active"
+        }
+
+        return false
     }
 
     // Eliminar la sesión
